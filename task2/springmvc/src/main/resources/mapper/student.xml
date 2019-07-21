@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czh.dao.StudentMapper">
+
+    <resultMap id="studentMap" type="com.czh.pojo.Student">
+        <!-- 解决类的属性名和数据库字段不一致的问题 -->
+        <result column="id" property="id"/>
+        <result property="onlineId" column="online_id"/>
+        <result property="createAt" column="create_at"/>
+        <result property="updateAt" column="update_at"/>
+    </resultMap>
+
+    <insert id="add" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        insert into student2 ( id,name,type,gradschool,online_id,channel,create_at,update_at ) values
+        (#{id},#{name},#{type},#{gradSchool},#{onlineId},#{channel},#{createAt},#{updateAt})
+    </insert>
+
+    <delete id="delete" parameterType="Student">
+        delete from student2 where id= #{id}
+    </delete>
+
+    <select id="get" parameterType="int" resultMap="studentMap">
+        select * from student2 where id= #{id}
+    </select>
+
+    <update id="update" parameterType="Student">
+        update student2 set name=#{name},type=#{type},gradschool=#{gradSchool},online_id=#{onlineId},channel=#{channel},create_at=#{createAt},update_at=#{updateAt} where id=#{id}
+    </update>
+
+    <select id="list" resultMap="studentMap">
+        select * from student2
+        <if test="start!=null and count!=null">
+            limit #{start},#{count}
+        </if>
+    </select>
+    <select id="total" resultType="int">
+        select count(*) from student2
+    </select>
+    <select id="findByName" resultMap="studentMap">
+        select * from student2 where name like concat("%", #{name},"%")
+    </select>
+
+</mapper>
