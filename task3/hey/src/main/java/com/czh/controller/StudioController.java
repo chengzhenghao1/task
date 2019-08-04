@@ -91,7 +91,7 @@ public class StudioController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/studio{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/a/studio/{id}", method = RequestMethod.GET)
     public Map getId(@PathVariable Long id, Studio studio) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();

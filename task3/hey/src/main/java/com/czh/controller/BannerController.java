@@ -91,7 +91,7 @@ public class BannerController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/banner{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/a/banner/{id}", method = RequestMethod.GET)
     public Map getId(@PathVariable Long id, Banner banner) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();

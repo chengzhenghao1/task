@@ -91,7 +91,7 @@ public class SecondController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/second{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/a/second/{id}", method = RequestMethod.GET)
     public Map getId(@PathVariable Long id, Second second) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();

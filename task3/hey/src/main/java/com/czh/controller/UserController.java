@@ -92,7 +92,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/user{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/a/user/{id}", method = RequestMethod.GET)
     public Map getId(@PathVariable Long id, User user) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();

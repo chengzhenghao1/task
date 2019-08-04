@@ -91,7 +91,7 @@ public class ProductionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/production{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/a/production/{id}", method = RequestMethod.GET)
     public Map getId(@PathVariable Long id, Production production) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
