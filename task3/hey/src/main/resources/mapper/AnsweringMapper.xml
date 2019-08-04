@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czh.dao.AnsweringMapper">
+    <resultMap id="BaseResultMap" type="com.czh.pojo.Answering">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="message_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="response" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="create_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="update_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="editor" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, nickname, message_id, response, create_at, update_at, editor
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from answering
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from answering
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.czh.pojo.Answering" useGeneratedKeys="true" keyProperty="id">
+    insert into answering (id, nickname, message_id,
+      response, create_at, update_at, 
+      editor)
+    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{messageId,jdbcType=BIGINT},
+      #{response,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+      #{editor,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.czh.pojo.Answering" useGeneratedKeys="true" keyProperty="id">
+        insert into answering
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="messageId != null">
+                message_id,
+            </if>
+            <if test="response != null">
+                response,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="messageId != null">
+                #{commentId,jdbcType=BIGINT},
+            </if>
+            <if test="response != null">
+                #{response,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                #{editor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.czh.pojo.Answering">
+        update answering
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="messageId != null">
+                comment_id = #{commentId,jdbcType=BIGINT},
+            </if>
+            <if test="response != null">
+                response = #{response,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                editor = #{editor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Answering">
+    update answering
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      message_id = #{messageId,jdbcType=BIGINT},
+      response = #{response,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      editor = #{editor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="getAnswering" resultMap="BaseResultMap">
+        select * from answering
+        <where>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR}
+            </if>
+            <if test="messageId != null">
+                and message_id = #{messageId,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+</mapper>

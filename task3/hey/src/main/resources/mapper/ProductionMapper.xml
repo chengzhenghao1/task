@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czh.dao.ProductionMapper">
+    <resultMap id="BaseResultMap" type="com.czh.pojo.Production">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="stair_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="second_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="production" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="thumbnail" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="video_link" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="introduction" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="create_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="update_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="editor" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, status, stair_id, second_id, production, thumbnail, video_link, photo,
+    introduction, create_at, update_at, editor
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from production
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from production
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.czh.pojo.Production" useGeneratedKeys="true" keyProperty="id">
+    insert into production (id, name, status, 
+      stair_id, second_id, production,
+      thumbnail, video_link, photo, 
+      introduction, create_at, update_at, 
+      editor)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{stairId,jdbcType=BIGINT}, #{secondId,jdbcType=BIGINT}, #{production,jdbcType=VARCHAR},
+      #{thumbnail,jdbcType=VARCHAR}, #{videoLink,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+      #{editor,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.czh.pojo.Production" useGeneratedKeys="true" keyProperty="id">
+        insert into production
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="stairId != null">
+                stair_id,
+            </if>
+            <if test="secondId != null">
+                second_id,
+            </if>
+            <if test="production != null">
+                production,
+            </if>
+            <if test="thumbnail != null">
+                thumbnail,
+            </if>
+            <if test="videoLink != null">
+                video_link,
+            </if>
+            <if test="photo != null">
+                photo,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="stairId != null">
+                #{stairId,jdbcType=BIGINT},
+            </if>
+            <if test="secondId != null">
+                #{secondId,jdbcType=BIGINT},
+            </if>
+            <if test="production != null">
+                #{production,jdbcType=VARCHAR},
+            </if>
+            <if test="thumbnail != null">
+                #{thumbnail,jdbcType=VARCHAR},
+            </if>
+            <if test="videoLink != null">
+                #{videoLink,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                #{editor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.czh.pojo.Production">
+        update production
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="stairId != null">
+                stair_id = #{stairId,jdbcType=BIGINT},
+            </if>
+            <if test="secondId != null">
+                second_id = #{secondId,jdbcType=BIGINT},
+            </if>
+            <if test="production != null">
+                production = #{production,jdbcType=VARCHAR},
+            </if>
+            <if test="thumbnail != null">
+                thumbnail = #{thumbnail,jdbcType=VARCHAR},
+            </if>
+            <if test="videoLink != null">
+                video_link = #{videoLink,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                photo = #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                editor = #{editor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Production">
+    update production
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      stair_id = #{stairId,jdbcType=BIGINT},
+      second_id = #{secondId,jdbcType=BIGINT},
+      production = #{production,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      video_link = #{videoLink,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      editor = #{editor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="getProduction" resultMap="BaseResultMap">
+        select * from production
+        <where>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

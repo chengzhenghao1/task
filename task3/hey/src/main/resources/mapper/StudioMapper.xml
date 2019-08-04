@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czh.dao.StudioMapper">
+    <resultMap id="BaseResultMap" type="com.czh.pojo.Studio">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="picture" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="main_body" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="create_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="update_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="editor" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, status, picture, main_body, create_at, update_at, editor
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from studio
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from studio
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.czh.pojo.Studio" useGeneratedKeys="true" keyProperty="id">
+    insert into studio (id, name, status, 
+      picture, main_body, create_at, 
+      update_at, editor)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=BIGINT}, 
+      #{picture,jdbcType=VARCHAR}, #{mainBody,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, 
+      #{updateAt,jdbcType=BIGINT}, #{editor,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.czh.pojo.Studio" useGeneratedKeys="true" keyProperty="id">
+        insert into studio
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="picture != null">
+                picture,
+            </if>
+            <if test="mainBody != null">
+                main_body,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIGINT},
+            </if>
+            <if test="picture != null">
+                #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="mainBody != null">
+                #{mainBody,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                #{editor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.czh.pojo.Studio">
+        update studio
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIGINT},
+            </if>
+            <if test="picture != null">
+                picture = #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="mainBody != null">
+                main_body = #{mainBody,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="editor != null">
+                editor = #{editor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Studio">
+    update studio
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIGINT},
+      picture = #{picture,jdbcType=VARCHAR},
+      main_body = #{mainBody,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      editor = #{editor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="getStudio" resultMap="BaseResultMap">
+        select * from studio
+        <where>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null" >
+                and status = #{status,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+</mapper>
