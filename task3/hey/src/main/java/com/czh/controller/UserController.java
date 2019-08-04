@@ -79,13 +79,13 @@ public class UserController {
         Map<String, Object> map = new HashMap();
         List<User> users = userService.getUser(username, role);
         if (users == null || users.size() == 0) {
-            map.put("code", 200);
-            map.put("message", "查询成功");
-            map.put("data", users);
-        } else {
             map.put("code", 400);
             map.put("message", "查询失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询成功");
+            map.put("data", users);
         }
         logger.info(":查询结果" + users);
         return map;
@@ -98,13 +98,13 @@ public class UserController {
         Map<String, Object> map = new HashMap();
         user = userService.selectByPrimaryKey(id);
         if (user == null) {
-            map.put("code", 200);
-            map.put("message", "查询单条数据成功");
-            map.put("data", user);
-        } else {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询单条数据成功");
+            map.put("data", user);
         }
         logger.info(":查询结果" + user);
         return map;

@@ -78,13 +78,13 @@ public class ProductionController {
         Map<String, Object> map = new HashMap();
         List<Production> productions = productionService.getProduction(name,status);
         if (productions == null || productions.size() == 0) {
-            map.put("code", 200);
-            map.put("message", "查询成功");
-            map.put("data", productions);
-        } else {
             map.put("code", 400);
             map.put("message", "查询失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询成功");
+            map.put("data", productions);
         }
         logger.info(":查询结果" + productions);
         return map;
@@ -97,13 +97,13 @@ public class ProductionController {
         Map<String, Object> map = new HashMap();
         production = productionService.selectByPrimaryKey(id);
         if (production == null) {
-            map.put("code", 200);
-            map.put("message", "查询单条数据成功");
-            map.put("data", production);
-        } else {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询单条数据成功");
+            map.put("data", production);
         }
         logger.info(":查询结果" + production);
         return map;

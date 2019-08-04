@@ -78,13 +78,13 @@ public class StairController {
         Map<String, Object> map = new HashMap();
         List<Stair> stairs = stairService.getStair(name, state);
         if (stairs == null || stairs.size() == 0) {
-            map.put("code", 200);
-            map.put("message", "查询成功");
-            map.put("data", stairs);
-        } else {
             map.put("code", 400);
             map.put("message", "查询失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询成功");
+            map.put("data", stairs);
         }
         logger.info(":查询结果" + stairs);
         return map;
@@ -97,13 +97,13 @@ public class StairController {
         Map<String, Object> map = new HashMap();
         stair = stairService.selectByPrimaryKey(id);
         if (stair == null) {
-            map.put("code", 200);
-            map.put("message", "查询单条数据成功");
-            map.put("data", stair);
-        } else {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询单条数据成功");
+            map.put("data", stair);
         }
         logger.info(":查询结果" + stair);
         return map;

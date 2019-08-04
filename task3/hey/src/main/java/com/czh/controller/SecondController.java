@@ -78,13 +78,13 @@ public class SecondController {
         Map<String, Object> map = new HashMap();
         List<Second> seconds = secondService.getSecond(name, state);
         if (seconds == null || seconds.size() == 0) {
-            map.put("code", 200);
-            map.put("message", "查询成功");
-            map.put("data", seconds);
-        } else {
             map.put("code", 400);
             map.put("message", "查询失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询成功");
+            map.put("data", seconds);
         }
         logger.info(":查询结果" + seconds);
         return map;
@@ -97,13 +97,13 @@ public class SecondController {
         Map<String, Object> map = new HashMap();
         second = secondService.selectByPrimaryKey(id);
         if (second == null) {
-            map.put("code", 200);
-            map.put("message", "查询单条数据成功");
-            map.put("data", second);
-        } else {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");
             map.put("data", "无法查找结果");
+        } else {
+            map.put("code", 200);
+            map.put("message", "查询单条数据成功");
+            map.put("data", second);
         }
         logger.info(":查询结果" + second);
         return map;
