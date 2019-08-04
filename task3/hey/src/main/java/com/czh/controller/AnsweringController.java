@@ -83,12 +83,12 @@ public class AnsweringController {
         List<Answering> answerings = answeringService.getAnswering(nickname, messageId);
         if (answerings == null || answerings.size() == 0) {
             map.put("code", 200);
-            map.put("message", "查询失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询成功");
             map.put("data", answerings);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + answerings);
         return map;
@@ -102,12 +102,12 @@ public class AnsweringController {
         answering = answeringService.selectByPrimaryKey(id);
         if (answering == null) {
             map.put("code", 200);
-            map.put("message", "查询单条数据失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询单条数据成功");
             map.put("data", answering);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询单条数据失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + answering);
         return map;

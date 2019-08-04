@@ -79,12 +79,12 @@ public class BannerController {
         List<Banner> banners = bannerService.getBanner(cover, state);
         if (banners == null || banners.size() == 0) {
             map.put("code", 200);
-            map.put("message", "查询失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询成功");
             map.put("data", banners);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + banners);
         return map;
@@ -98,12 +98,12 @@ public class BannerController {
         banner = bannerService.selectByPrimaryKey(id);
         if (banner == null) {
             map.put("code", 200);
-            map.put("message", "查询单条数据失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询单条数据成功");
             map.put("data", banner);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询单条数据失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + banner);
         return map;

@@ -79,12 +79,12 @@ public class StudioController {
         List<Studio> studios = studioService.getStudio(name, state);
         if (studios == null || studios.size() == 0) {
             map.put("code", 200);
-            map.put("message", "查询失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询成功");
             map.put("data", studios);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + studios);
         return map;
@@ -98,12 +98,12 @@ public class StudioController {
         studio = studioService.selectByPrimaryKey(id);
         if (studio == null) {
             map.put("code", 200);
-            map.put("message", "查询单条数据失败");
-            map.put("data", "无法查找结果");
-        } else {
-            map.put("code", 400);
             map.put("message", "查询单条数据成功");
             map.put("data", studio);
+        } else {
+            map.put("code", 400);
+            map.put("message", "查询单条数据失败");
+            map.put("data", "无法查找结果");
         }
         logger.info(":查询结果" + studio);
         return map;
