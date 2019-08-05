@@ -41,7 +41,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/a/u/user/{id}", method = RequestMethod.DELETE)
-    public Map deleteUser(@PathVariable Long id) {
+    public Map deleteUser(@PathVariable Integer id) {
         logger.info("进入删除方法");
         Map<String, Object> map = new HashMap();
         boolean a = userService.deleteByPrimaryKey(id);
@@ -92,11 +92,11 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/user/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, User user) {
+    @RequestMapping(value = "/a/u/c/user/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Integer id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        user = userService.selectByPrimaryKey(id);
+        User user = userService.selectByPrimaryKey(id);
         if (user == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

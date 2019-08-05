@@ -96,7 +96,7 @@ public class StudioServiceImpl implements StudioService {
     }
 
     @Override
-    public List<Studio> getStudio(String name, long status) {
+    public List<Studio> getStudio(String name, Integer status) {
         return studioMapper.getStudio(name, status);
     }
 }

@@ -95,13 +95,14 @@ public class BannerServiceImpl implements BannerService {
         }
     }
 
+
     /**
-     * @param cover
+     * @param editor
      * @param state
      * @return
      */
     @Override
-    public List<Banner> getBanner(String cover, long state) {
-        return bannerMapper.getBanner(cover, state);
+    public List<Banner> getBanner(String editor, Integer state) {
+        return bannerMapper.getBanner(editor, state);
     }
 }

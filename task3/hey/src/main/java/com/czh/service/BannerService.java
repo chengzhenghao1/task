@@ -18,5 +18,5 @@ public interface BannerService {
 
     boolean updateByPrimaryKey(Banner record);
 
-    List<Banner> getBanner(@Param("cover") String cover, @Param("state") long state);
+    List<Banner> getBanner(@Param("editor") String editor, @Param("state") Integer state);
 }

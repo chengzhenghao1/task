@@ -60,10 +60,10 @@ public class AnsweringController {
 
     @ResponseBody
     @RequestMapping(value = "/a/u/answering/{id}", method = RequestMethod.PUT)
-    public Map updateAnswering(@PathVariable Long id, Answering answering) {
+    public Map updateAnswering(@PathVariable Long id, Answering record) {
         logger.info("进入编辑");
         Map<String, Object> map = new HashMap();
-        boolean a = answeringService.updateByPrimaryKey(answering);
+        boolean a = answeringService.updateByPrimaryKey(record);
         if (a) {
             map.put("code", 200);
             map.put("message", "编辑成功");
@@ -95,11 +95,11 @@ public class AnsweringController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/answering/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Answering answering) {
+    @RequestMapping(value = "/a/u/c/answering/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        answering = answeringService.selectByPrimaryKey(id);
+        Answering answering = answeringService.selectByPrimaryKey(id);
         if (answering == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

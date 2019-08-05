@@ -5,7 +5,7 @@ public class Studio {
 
     private String name;
 
-    private Long status;
+    private Integer status;
 
     private String picture;
 
@@ -31,7 +31,7 @@ public class Studio {
                 '}';
     }
 
-    public Studio(Long id, String name, Long status, String picture, String mainBody, Long createAt, Long updateAt, String editor) {
+    public Studio(Long id, String name, Integer status, String picture, String mainBody, Long createAt, Long updateAt, String editor) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -62,11 +62,11 @@ public class Studio {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Long status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

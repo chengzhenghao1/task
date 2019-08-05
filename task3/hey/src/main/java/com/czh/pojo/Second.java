@@ -20,7 +20,7 @@ public class Second {
         return "Second{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", firstId=" + stairId +
+                ", stairId=" + stairId +
                 ", state=" + state +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
@@ -65,7 +65,6 @@ public class Second {
     public void setStairId(Long stairId) {
         this.stairId = stairId;
     }
-
 
     public Integer getState() {
         return state;

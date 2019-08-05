@@ -25,7 +25,7 @@ public class StudioTest {
     @Test
     public void insert() {
         s.setName("简介类型");
-        s.setStatus(0L);
+        s.setStatus(0);
         s.setPicture("工作室图片");
         s.setMainBody("正文");
         s.setCreateAt(2049L);
@@ -41,14 +41,14 @@ public class StudioTest {
 
     @Test
     public void updateByPrimaryKey() {
-        s.setName("简介类型");
-        s.setStatus(0L);
+        s.setName("类型");
+        s.setStatus(0);
         s.setPicture("工作室图片");
-        s.setMainBody("正文");
+        s.setMainBody("政党");
         s.setCreateAt(2049L);
         s.setUpdateAt(2050L);
         s.setEditor("编辑人");
-        s.setId(2L);
+        s.setId(10L);
         studioService.updateByPrimaryKey(s);
     }
 
@@ -62,7 +62,7 @@ public class StudioTest {
 
     @Test
     public void getStudio() {
-        List<Studio> list = studioService.getStudio(null, 0);
+        List<Studio> list = studioService.getStudio("张大千", 1);
         for (Studio a : list) {
             logger.info(String.valueOf(a));
         }

@@ -25,7 +25,7 @@ public class ProductionTest {
     @Test
     public void insert() {
         s.setName("名称");
-        s.setStatus("状态");
+        s.setStatus(0);
         s.setStairId(8L);
         s.setSecondId(17L);
         s.setProduction("作品简介");
@@ -47,9 +47,9 @@ public class ProductionTest {
     @Test
     public void updateByPrimaryKey() {
         s.setName("名称");
-        s.setStatus("状态");
-        s.setStairId(1L);
-        s.setSecondId(2L);
+        s.setStatus(0);
+        s.setStairId(8L);
+        s.setSecondId(20L);
         s.setProduction("作品简介");
         s.setThumbnail("缩略图");
         s.setVideoLink("视频链接");
@@ -58,7 +58,7 @@ public class ProductionTest {
         s.setCreateAt(2005L);
         s.setUpdateAt(2006L);
         s.setEditor("编辑人");
-        s.setId(2L);
+        s.setId(24L);
         productionService.updateByPrimaryKey(s);
     }
 
@@ -72,7 +72,7 @@ public class ProductionTest {
 
     @Test
     public void getPrimaryKey() {
-        List<Production> list = productionService.getProduction(null, "状态");
+        List<Production> list = productionService.getProduction("名称", 0);
         for (Production a : list) {
             logger.info(String.valueOf(a));
         }

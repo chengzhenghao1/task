@@ -95,13 +95,14 @@ public class MessageServiceImpl implements MessageService {
         }
     }
 
+
     /**
-     * @param title
-     * @param nickname
+     * @param productionId
+     * @param status
      * @return
      */
     @Override
-    public List<Message> getMessage(String title, String nickname) {
-        return messageMapper.getMessage(title, nickname);
+    public List<Message> getMessage(Long productionId, Integer status) {
+        return messageMapper.getMessage(productionId, status);
     }
 }

@@ -73,7 +73,7 @@ public class SecondController {
     @ResponseBody
     @RequestMapping(value = "/a/u/second", method = RequestMethod.GET)
     public Map getAnswering(@RequestParam(value = "name", required = false) String name,
-                            @RequestParam(value = "state", required = false) long state) {
+                            @RequestParam(value = "state", required = false) Integer state) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
         List<Second> seconds = secondService.getSecond(name, state);
@@ -91,11 +91,11 @@ public class SecondController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/second/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Second second) {
+    @RequestMapping(value = "/a/u/c/second/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        second = secondService.selectByPrimaryKey(id);
+        Second second = secondService.selectByPrimaryKey(id);
         if (second == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

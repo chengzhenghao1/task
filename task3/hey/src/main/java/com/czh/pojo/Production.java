@@ -5,7 +5,7 @@ public class Production {
 
     private String name;
 
-    private String status;
+    private Integer status;
 
     private Long stairId;
 
@@ -32,8 +32,8 @@ public class Production {
         return "Production{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
-                ", firstId=" + stairId +
+                ", status=" + status +
+                ", stairId=" + stairId +
                 ", secondId=" + secondId +
                 ", production='" + production + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
@@ -46,7 +46,7 @@ public class Production {
                 '}';
     }
 
-    public Production(Long id, String name, String status, Long stairId, Long secondId, String production, String thumbnail, String videoLink, String photo, String introduction, Long createAt, Long updateAt, String editor) {
+    public Production(Long id, String name, Integer status, Long stairId, Long secondId, String production, String thumbnail, String videoLink, String photo, String introduction, Long createAt, Long updateAt, String editor) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -82,12 +82,12 @@ public class Production {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getStairId() {

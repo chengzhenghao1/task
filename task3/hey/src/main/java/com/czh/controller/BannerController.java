@@ -73,7 +73,7 @@ public class BannerController {
     @ResponseBody
     @RequestMapping(value = "/a/u/banner", method = RequestMethod.GET)
     public Map getBanner(@RequestParam(value = "cover", required = false) String cover,
-                         @RequestParam(value = "state", required = false) long state) {
+                         @RequestParam(value = "state", required = false) Integer state) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
         List<Banner> banners = bannerService.getBanner(cover, state);
@@ -91,11 +91,11 @@ public class BannerController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/banner/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Banner banner) {
+    @RequestMapping(value = "/a/u/c/banner/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        banner = bannerService.selectByPrimaryKey(id);
+        Banner banner = bannerService.selectByPrimaryKey(id);
         if (banner == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

@@ -18,5 +18,5 @@ public interface StairService {
 
     boolean updateByPrimaryKey(Stair record);
 
-    List<Stair> getStair(@Param("name") String name, @Param("state") long state);
+    List<Stair> getStair(@Param("name") String name, @Param("state") Integer state);
 }

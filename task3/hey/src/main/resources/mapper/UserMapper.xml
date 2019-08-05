@@ -3,7 +3,7 @@
 <mapper namespace="com.czh.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.czh.pojo.User">
         <constructor>
-            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="role" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -15,25 +15,25 @@
     <sql id="Base_Column_List">
     id, username, password, role, create_at, update_at, editor
   </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from user
-        where id = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.czh.pojo.User">
     insert into user (id, username, password, 
       role, create_at, update_at, 
       editor)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{role,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
       #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -60,7 +60,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
-                #{id,jdbcType=BIGINT},
+                #{id,jdbcType=INTEGER},
             </if>
             <if test="username != null">
                 #{username,jdbcType=VARCHAR},
@@ -104,7 +104,7 @@
                 editor = #{editor,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.czh.pojo.User">
     update user
@@ -114,13 +114,13 @@
       create_at = #{createAt,jdbcType=BIGINT},
       update_at = #{updateAt,jdbcType=BIGINT},
       editor = #{editor,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="getUser" resultMap="BaseResultMap">
         select * from user
         <where>
             <if test="username != null">
-                username = #{username,jdbcType=VARCHAR}
+                username like concat("%",#{username},"%")
             </if>
             <if test="role != null">
                 and role = #{role,jdbcType=VARCHAR}

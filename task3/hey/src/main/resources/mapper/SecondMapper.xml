@@ -25,15 +25,15 @@
     delete from second
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Second" useGeneratedKeys="true" keyProperty="id">
-    insert into second (id, name, stair_id,
-      state, create_at,
-      update_at, editor)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{stairId,jdbcType=BIGINT},
-      #{state,jdbcType=INTEGER}, #{createAt,jdbcType=BIGINT},
-      #{updateAt,jdbcType=BIGINT}, #{editor,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.czh.pojo.Second">
+    insert into second (id, name, stair_id, 
+      state, create_at, update_at, 
+      editor)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{stairId,jdbcType=BIGINT}, 
+      #{state,jdbcType=INTEGER}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+      #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Second" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Second">
         insert into second
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -120,10 +120,10 @@
         select * from second
         <where>
             <if test="name != null">
-                name = #{name,jdbcType=VARCHAR}
+                name like concat("%",#{name},"%")
             </if>
             <if test="state != null">
-                and state = #{state,jdbcType=BIGINT}
+                and state = #{state,jdbcType=INTEGER}
             </if>
         </where>
     </select>

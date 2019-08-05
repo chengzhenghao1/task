@@ -18,5 +18,5 @@ public interface ProductionService {
 
     boolean updateByPrimaryKey(Production record);
 
-    List<Production> getProduction(@Param("name") String name, @Param("status") String status);
+    List<Production> getProduction(@Param("name") String name, @Param("status") Integer status);
 }

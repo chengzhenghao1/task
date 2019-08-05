@@ -101,7 +101,7 @@ public class StairServiceImpl implements StairService {
      * @return
      */
     @Override
-    public List<Stair> getStair(String name, long state) {
+    public List<Stair> getStair(String name, Integer state) {
         return stairMapper.getStair(name, state);
     }
 }

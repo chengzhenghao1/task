@@ -3,11 +3,11 @@ package com.czh.pojo;
 public class Message {
     private Long id;
 
-    private String title;
+    private Long productionId;
 
     private String nickname;
 
-    private String status;
+    private Integer status;
 
     private Long createAt;
 
@@ -19,18 +19,18 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
+                ", productionId=" + productionId +
                 ", nickname='" + nickname + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 ", editor='" + editor + '\'' +
                 '}';
     }
 
-    public Message(Long id, String title, String nickname, String status, Long createAt, Long updateAt, String editor) {
+    public Message(Long id, Long productionId, String nickname, Integer status, Long createAt, Long updateAt, String editor) {
         this.id = id;
-        this.title = title;
+        this.productionId = productionId;
         this.nickname = nickname;
         this.status = status;
         this.createAt = createAt;
@@ -50,12 +50,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Long getProductionId() {
+        return productionId;
     }
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+    public void setProductionId(Long productionId) {
+        this.productionId = productionId;
     }
 
     public String getNickname() {
@@ -66,12 +66,12 @@ public class Message {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getCreateAt() {

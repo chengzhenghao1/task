@@ -39,12 +39,12 @@ public class StairTest {
 
     @Test
     public void updateByPrimaryKey() {
-        s.setName("一级作品集名称");
+        s.setName("一级");
         s.setState(0);
         s.setCreateAt(2037L);
         s.setUpdateAt(2038L);
         s.setEditor("编辑人");
-        s.setId(2L);
+        s.setId(11L);
         stairService.updateByPrimaryKey(s);
     }
 
@@ -58,7 +58,7 @@ public class StairTest {
 
     @Test
     public void getStair() {
-        List<Stair> list = stairService.getStair(null, 0);
+        List<Stair> list = stairService.getStair("名字", 0);
         for (Stair a : list) {
             logger.info(String.valueOf(a));
         }

@@ -101,7 +101,7 @@ public class SecondServiceImpl implements SecondService {
      * @return
      */
     @Override
-    public List<Second> getSecond(String name, long state) {
+    public List<Second> getSecond(String name, Integer state) {
         return secondMapper.getSecond(name, state);
     }
 }

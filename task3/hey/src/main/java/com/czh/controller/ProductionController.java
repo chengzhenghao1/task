@@ -73,7 +73,7 @@ public class ProductionController {
     @ResponseBody
     @RequestMapping(value = "/a/u/production", method = RequestMethod.GET)
     public Map getAnswering(@RequestParam(value = "name", required = false) String name,
-                            @RequestParam(value = "status", required = false) String status) {
+                            @RequestParam(value = "status", required = false) Integer status) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
         List<Production> productions = productionService.getProduction(name,status);
@@ -91,11 +91,11 @@ public class ProductionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/production/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Production production) {
+    @RequestMapping(value = "/a/u/c/production/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        production = productionService.selectByPrimaryKey(id);
+        Production production = productionService.selectByPrimaryKey(id);
         if (production == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

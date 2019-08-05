@@ -1,20 +1,6 @@
 package com.czh.pojo;
 
 public class User {
-    private Long id;
-
-    private String username;
-
-    private String password;
-
-    private String role;
-
-    private Long createAt;
-
-    private Long updateAt;
-
-    private String editor;
-
     @Override
     public String toString() {
         return "User{" +
@@ -28,7 +14,21 @@ public class User {
                 '}';
     }
 
-    public User(Long id, String username, String password, String role, Long createAt, Long updateAt, String editor) {
+    private Integer id;
+
+    private String username;
+
+    private String password;
+
+    private String role;
+
+    private Long createAt;
+
+    private Long updateAt;
+
+    private String editor;
+
+    public User(Integer id, String username, String password, String role, Long createAt, Long updateAt, String editor) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -42,11 +42,11 @@ public class User {
         super();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

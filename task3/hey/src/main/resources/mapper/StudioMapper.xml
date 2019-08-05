@@ -5,7 +5,7 @@
         <constructor>
             <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="status" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="picture" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="main_body" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="create_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
@@ -26,15 +26,15 @@
     delete from studio
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Studio" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.czh.pojo.Studio">
     insert into studio (id, name, status, 
       picture, main_body, create_at, 
       update_at, editor)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{picture,jdbcType=VARCHAR}, #{mainBody,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, 
       #{updateAt,jdbcType=BIGINT}, #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Studio" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Studio">
         insert into studio
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -70,7 +70,7 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                #{status,jdbcType=BIGINT},
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="picture != null">
                 #{picture,jdbcType=VARCHAR},
@@ -96,7 +96,7 @@
                 name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                status = #{status,jdbcType=BIGINT},
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="picture != null">
                 picture = #{picture,jdbcType=VARCHAR},
@@ -119,7 +119,7 @@
     <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Studio">
     update studio
     set name = #{name,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},
       main_body = #{mainBody,jdbcType=VARCHAR},
       create_at = #{createAt,jdbcType=BIGINT},
@@ -130,10 +130,10 @@
     <select id="getStudio" resultMap="BaseResultMap">
         select * from studio
         <where>
-            <if test="name != null" >
-                name = #{name,jdbcType=VARCHAR}
+            <if test="name != null">
+                name like concat("%",#{name},"%")
             </if>
-            <if test="status != null" >
+            <if test="status != null">
                 and status = #{status,jdbcType=BIGINT}
             </if>
         </where>

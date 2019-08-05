@@ -18,5 +18,5 @@ public interface MessageMapper {
 
     int updateByPrimaryKey(Message record);
 
-    List<Message> getMessage(@Param("title") String title, @Param("nickname") String nickname);
+    List<Message> getMessage(@Param("productionId") Long productionId, @Param("status") Integer status);
 }

@@ -18,5 +18,5 @@ public interface StudioService {
 
     boolean updateByPrimaryKey(Studio record);
 
-    List<Studio> getStudio(@Param("name") String name, @Param("status") long status);
+    List<Studio> getStudio(@Param("name") String name, @Param("status") Integer status);
 }

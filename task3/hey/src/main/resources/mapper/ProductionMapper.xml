@@ -5,7 +5,7 @@
         <constructor>
             <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="stair_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="second_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="production" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -19,7 +19,7 @@
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, name, status, stair_id, second_id, production, thumbnail, video_link, photo,
+    id, name, status, stair_id, second_id, production, thumbnail, video_link, photo, 
     introduction, create_at, update_at, editor
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -32,19 +32,19 @@
     delete from production
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Production" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.czh.pojo.Production">
     insert into production (id, name, status, 
-      stair_id, second_id, production,
+      stair_id, second_id, production, 
       thumbnail, video_link, photo, 
       introduction, create_at, update_at, 
       editor)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{stairId,jdbcType=BIGINT}, #{secondId,jdbcType=BIGINT}, #{production,jdbcType=VARCHAR},
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{stairId,jdbcType=BIGINT}, #{secondId,jdbcType=BIGINT}, #{production,jdbcType=VARCHAR}, 
       #{thumbnail,jdbcType=VARCHAR}, #{videoLink,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
       #{introduction,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
       #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Production" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Production">
         insert into production
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -95,7 +95,7 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                #{status,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="stairId != null">
                 #{stairId,jdbcType=BIGINT},
@@ -136,7 +136,7 @@
                 name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                status = #{status,jdbcType=VARCHAR},
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="stairId != null">
                 stair_id = #{stairId,jdbcType=BIGINT},
@@ -174,7 +174,7 @@
     <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Production">
     update production
     set name = #{name,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       stair_id = #{stairId,jdbcType=BIGINT},
       second_id = #{secondId,jdbcType=BIGINT},
       production = #{production,jdbcType=VARCHAR},
@@ -191,10 +191,10 @@
         select * from production
         <where>
             <if test="name != null">
-                name = #{name,jdbcType=VARCHAR}
+                name like concat("%",#{name},"%")
             </if>
             <if test="status != null">
-                and status = #{status,jdbcType=VARCHAR}
+                and status = #{status,jdbcType=INTEGER}
             </if>
         </where>
     </select>

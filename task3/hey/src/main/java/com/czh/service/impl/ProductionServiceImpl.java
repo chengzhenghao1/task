@@ -95,13 +95,14 @@ public class ProductionServiceImpl implements ProductionService {
         }
     }
 
+
     /**
      * @param name
      * @param status
      * @return
      */
     @Override
-    public List<Production> getProduction(String name, String status) {
-        return productionMapper.getProduction(name, status);
+    public List<Production> getProduction(String name, Integer status) {
+        return productionMapper.getProduction(name,status);
     }
 }

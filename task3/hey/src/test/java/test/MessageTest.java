@@ -24,9 +24,9 @@ public class MessageTest {
 
     @Test
     public void insert() {
-        s.setTitle("蒙阿丽莎");
+        s.setProductionId(20L);
         s.setNickname("达芬奇");
-        s.setStatus("被盗");
+        s.setStatus(1);
         s.setCreateAt(1998L);
         s.setUpdateAt(2019L);
         s.setEditor("文艺复兴时期作卓越的代表人物");
@@ -40,19 +40,19 @@ public class MessageTest {
 
     @Test
     public void updateByPrimaryKey() {
-        s.setTitle("夜晚的咖啡馆");
+        s.setProductionId(18L);
         s.setNickname("文森特·威廉·梵高");
-        s.setStatus("被盗");
+        s.setStatus(1);
         s.setCreateAt(1998L);
         s.setUpdateAt(2019L);
         s.setEditor("印象派的重要的画家");
-        s.setId(2L);
+        s.setId(25L);
         messageService.updateByPrimaryKey(s);
     }
 
     @Test
     public void selectByPrimaryKey() {
-        List<Message> messages = Collections.singletonList(messageService.selectByPrimaryKey(6L));
+        List<Message> messages = Collections.singletonList(messageService.selectByPrimaryKey(19L));
         for (Message message : messages) {
             logger.info(String.valueOf(message));
         }

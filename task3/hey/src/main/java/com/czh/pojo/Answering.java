@@ -20,7 +20,7 @@ public class Answering {
         return "Answering{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
-                ", commentId=" +messageId +
+                ", messageId=" + messageId +
                 ", response='" + response + '\'' +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
@@ -62,7 +62,7 @@ public class Answering {
         return messageId;
     }
 
-    public void setMessageId(long messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 

@@ -25,15 +25,15 @@
     delete from answering
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Answering" useGeneratedKeys="true" keyProperty="id">
-    insert into answering (id, nickname, message_id,
+    <insert id="insert" parameterType="com.czh.pojo.Answering">
+    insert into answering (id, nickname, message_id, 
       response, create_at, update_at, 
       editor)
-    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{messageId,jdbcType=BIGINT},
+    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{messageId,jdbcType=BIGINT}, 
       #{response,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
       #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Answering" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Answering">
         insert into answering
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -66,7 +66,7 @@
                 #{nickname,jdbcType=VARCHAR},
             </if>
             <if test="messageId != null">
-                #{commentId,jdbcType=BIGINT},
+                #{messageId,jdbcType=BIGINT},
             </if>
             <if test="response != null">
                 #{response,jdbcType=VARCHAR},
@@ -89,7 +89,7 @@
                 nickname = #{nickname,jdbcType=VARCHAR},
             </if>
             <if test="messageId != null">
-                comment_id = #{commentId,jdbcType=BIGINT},
+                message_id = #{messageId,jdbcType=BIGINT},
             </if>
             <if test="response != null">
                 response = #{response,jdbcType=VARCHAR},
@@ -120,7 +120,7 @@
         select * from answering
         <where>
             <if test="nickname != null">
-                nickname = #{nickname,jdbcType=VARCHAR}
+                nickname like concat("%",#{nickname},"%")
             </if>
             <if test="messageId != null">
                 and message_id = #{messageId,jdbcType=BIGINT}

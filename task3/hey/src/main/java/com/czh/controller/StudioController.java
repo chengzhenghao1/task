@@ -73,7 +73,7 @@ public class StudioController {
     @ResponseBody
     @RequestMapping(value = "/a/u/studio", method = RequestMethod.GET)
     public Map getStudio(@RequestParam(value = "name", required = false) String name,
-                         @RequestParam(value = "state", required = false) long state) {
+                         @RequestParam(value = "state", required = false) Integer state) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
         List<Studio> studios = studioService.getStudio(name, state);
@@ -91,11 +91,11 @@ public class StudioController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/studio/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Studio studio) {
+    @RequestMapping(value = "/a/u/c/studio/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        studio = studioService.selectByPrimaryKey(id);
+        Studio studio = studioService.selectByPrimaryKey(id);
         if (studio == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

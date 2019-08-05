@@ -24,7 +24,7 @@
     delete from stair
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Stair" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.czh.pojo.Stair">
     insert into stair (id, name, state, 
       create_at, update_at, editor
       )
@@ -32,7 +32,7 @@
       #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, #{editor,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Stair" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Stair">
         insert into stair
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -109,10 +109,10 @@
         select * from stair
         <where>
             <if test="name != null">
-                name = #{name,jdbcType=VARCHAR}
+                name like concat("%",#{name},"%")
             </if>
             <if test="state != null">
-                and state = #{state,jdbcType=BIGINT}
+                and state = #{state,jdbcType=INTEGER}
             </if>
         </where>
     </select>

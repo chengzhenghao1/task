@@ -72,11 +72,11 @@ public class MessageController {
 
     @ResponseBody
     @RequestMapping(value = "/a/u/message", method = RequestMethod.GET)
-    public Map getUser(@RequestParam(value = "title", required = false) String title,
-                       @RequestParam(value = "nickname", required = false) String nickname) {
+    public Map getUser(@RequestParam(value = "productionId", required = false) Long productionId,
+                       @RequestParam(value = "status", required = false) Integer status) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
-        List<Message> messages = messageService.getMessage(title, nickname);
+        List<Message> messages = messageService.getMessage(productionId, status);
         if (messages == null || messages.size() == 0) {
             map.put("code", 400);
             map.put("message", "查询失败");
@@ -91,11 +91,11 @@ public class MessageController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/message/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Message message) {
+    @RequestMapping(value = "/a/u/c/message/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        message = messageService.selectByPrimaryKey(id);
+        Message message = messageService.selectByPrimaryKey(id);
         if (message == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

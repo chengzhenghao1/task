@@ -4,16 +4,16 @@
     <resultMap id="BaseResultMap" type="com.czh.pojo.Message">
         <constructor>
             <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
-            <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="production_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="create_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="update_at" javaType="java.lang.Long" jdbcType="BIGINT"/>
             <arg column="editor" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, title, nickname, status, create_at, update_at, editor
+    id, production_id, nickname, status, create_at, update_at, editor
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -25,22 +25,22 @@
     delete from message
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Message" useGeneratedKeys="true" keyProperty="id">
-    insert into message (id, title, nickname, 
+    <insert id="insert" parameterType="com.czh.pojo.Message">
+    insert into message (id, production_id, nickname, 
       status, create_at, update_at, 
       editor)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{productionId,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
       #{editor,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Message" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Message">
         insert into message
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
             </if>
-            <if test="title != null">
-                title,
+            <if test="productionId != null">
+                production_id,
             </if>
             <if test="nickname != null">
                 nickname,
@@ -62,14 +62,14 @@
             <if test="id != null">
                 #{id,jdbcType=BIGINT},
             </if>
-            <if test="title != null">
-                #{title,jdbcType=VARCHAR},
+            <if test="productionId != null">
+                #{productionId,jdbcType=BIGINT},
             </if>
             <if test="nickname != null">
                 #{nickname,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                #{status,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="createAt != null">
                 #{createAt,jdbcType=BIGINT},
@@ -85,14 +85,14 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.czh.pojo.Message">
         update message
         <set>
-            <if test="title != null">
-                title = #{title,jdbcType=VARCHAR},
+            <if test="productionId != null">
+                production_id = #{productionId,jdbcType=BIGINT},
             </if>
             <if test="nickname != null">
                 nickname = #{nickname,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                status = #{status,jdbcType=VARCHAR},
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="createAt != null">
                 create_at = #{createAt,jdbcType=BIGINT},
@@ -108,9 +108,9 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.czh.pojo.Message">
     update message
-    set title = #{title,jdbcType=VARCHAR},
+    set production_id = #{productionId,jdbcType=BIGINT},
       nickname = #{nickname,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       create_at = #{createAt,jdbcType=BIGINT},
       update_at = #{updateAt,jdbcType=BIGINT},
       editor = #{editor,jdbcType=VARCHAR}
@@ -119,11 +119,11 @@
     <select id="getMessage" resultMap="BaseResultMap">
         select * from message
         <where>
-            <if test="title != null" >
-                title = #{title,jdbcType=VARCHAR}
+            <if test="productionId != null">
+                production_Id = #{productionId,jdbcType=BIGINT}
             </if>
-            <if test="nickname != null" >
-                and nickname = #{nickname,jdbcType=VARCHAR}
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
             </if>
         </where>
     </select>

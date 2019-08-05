@@ -46,7 +46,7 @@ public class BannerTest {
         s.setState(0);
         s.setCreateAt(11111L);
         s.setUpdateAt(22222222L);
-        s.setId(2L);
+        s.setId(12L);
         bannerService.updateByPrimaryKey(s);
     }
 
@@ -60,7 +60,7 @@ public class BannerTest {
 
     @Test
     public void getBanner() {
-        List<Banner> list = bannerService.getBanner(null, 0);
+        List<Banner> list = bannerService.getBanner("马", 0);
         for (Banner a : list) {
             logger.info(String.valueOf(a));
         }

@@ -18,5 +18,5 @@ public interface SecondService {
 
     boolean updateByPrimaryKey(Second record);
 
-    List<Second> getSecond(@Param("name") String name, @Param("state") long state);
+    List<Second> getSecond(@Param("name") String name, @Param("state") Integer state);
 }

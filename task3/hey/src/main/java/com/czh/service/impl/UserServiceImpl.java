@@ -16,12 +16,9 @@ public class UserServiceImpl implements UserService {
 
     Logger logger = Logger.getLogger(String.valueOf(UserServiceImpl.class));
 
-    /**
-     * @param id
-     * @return
-     */
+
     @Override
-    public boolean deleteByPrimaryKey(Long id) {
+    public boolean deleteByPrimaryKey(Integer id) {
         int a = userMapper.deleteByPrimaryKey(id);
         if (a == 1) {
             logger.info("删除成功");
@@ -31,6 +28,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
 
     /**
      * @param record
@@ -59,7 +57,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public User selectByPrimaryKey(Long id) {
+    public User selectByPrimaryKey(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
 

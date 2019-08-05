@@ -73,7 +73,7 @@ public class StairController {
     @ResponseBody
     @RequestMapping(value = "/a/u/stair", method = RequestMethod.GET)
     public Map getAnswering(@RequestParam(value = "name", required = false) String name,
-                            @RequestParam(value = "state", required = false) long state) {
+                            @RequestParam(value = "state", required = false) Integer state) {
         logger.info("进入条件查询");
         Map<String, Object> map = new HashMap();
         List<Stair> stairs = stairService.getStair(name, state);
@@ -91,11 +91,11 @@ public class StairController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/a/stair/{id}", method = RequestMethod.GET)
-    public Map getId(@PathVariable Long id, Stair stair) {
+    @RequestMapping(value = "/a/u/c/stair/{id}", method = RequestMethod.GET)
+    public Map getId(@PathVariable Long id) {
         logger.info("进入单条查询");
         Map<String, Object> map = new HashMap();
-        stair = stairService.selectByPrimaryKey(id);
+        Stair stair = stairService.selectByPrimaryKey(id);
         if (stair == null) {
             map.put("code", 400);
             map.put("message", "查询单条数据失败");

@@ -5,10 +5,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-
 public interface AnsweringMapper {
-
-    int deleteByPrimaryKey(long id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Answering record);
 

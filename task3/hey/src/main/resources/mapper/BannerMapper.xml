@@ -25,7 +25,7 @@
     delete from banner
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.czh.pojo.Banner" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.czh.pojo.Banner">
     insert into banner (id, cover, editor, 
       url, state, create_at, 
       update_at)
@@ -33,7 +33,7 @@
       #{url,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{createAt,jdbcType=BIGINT}, 
       #{updateAt,jdbcType=BIGINT})
   </insert>
-    <insert id="insertSelective" parameterType="com.czh.pojo.Banner" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.czh.pojo.Banner">
         insert into banner
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -119,11 +119,11 @@
     <select id="getBanner" resultMap="BaseResultMap">
         select * from banner
         <where>
-            <if test="cover != null">
-                cover = #{cover,jdbcType=VARCHAR}
+            <if test="editor != null">
+                editor like concat("%",#{editor},"%")
             </if>
             <if test="state != null">
-                and state = #{state,jdbcType=BIGINT}
+                and state = #{state,jdbcType=INTEGER}
             </if>
         </where>
     </select>

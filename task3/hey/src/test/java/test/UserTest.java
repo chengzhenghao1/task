@@ -35,24 +35,24 @@ public class UserTest {
 
     @Test
     public void deleteByPrimaryKey() {
-        userService.deleteByPrimaryKey(2L);
+        userService.deleteByPrimaryKey(2);
     }
 
     @Test
     public void updateByPrimaryKey() {
-        s.setUsername("用户姓名");
+        s.setUsername("啦啦啦啦啦");
         s.setPassword("用户密码");
         s.setRole("角色");
         s.setCreateAt(2100L);
         s.setUpdateAt(2101L);
         s.setEditor("编辑人");
-        s.setId(2L);
+        s.setId(5);
         userService.updateByPrimaryKey(s);
     }
 
     @Test
     public void selectByPrimaryKey() {
-        List<User> users = Collections.singletonList(userService.selectByPrimaryKey(2L));
+        List<User> users = Collections.singletonList(userService.selectByPrimaryKey(2));
         for (User user : users) {
             logger.info(String.valueOf(user));
         }
@@ -60,7 +60,7 @@ public class UserTest {
 
     @Test
     public void getArticle() {
-        List<User> list = userService.getUser(null, null);
+        List<User> list = userService.getUser("卡", "角色");
         for (User a : list) {
             logger.info(String.valueOf(a));
         }

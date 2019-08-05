@@ -26,7 +26,7 @@ public class AnsweringTest {
     public void insert() {
 //        s.setId(2L);
         s.setNickname("吴冠中");
-        s.setMessageId(14);
+        s.setMessageId(23L);
         s.setResponse("这画的真菜");
         s.setCreateAt((long) 20190728);
         s.setUpdateAt((long) 20190728);
@@ -42,12 +42,12 @@ public class AnsweringTest {
     @Test
     public void updateByPrimaryKey() {
         s.setNickname("郭碧婷");
-        s.setMessageId(11);
+        s.setMessageId(20L);
         s.setResponse("凑合吧");
         s.setCreateAt(11121L);
         s.setUpdateAt(111111L);
         s.setEditor("零小灵通");
-        s.setId(4L);
+        s.setId(30L);
         answeringService.updateByPrimaryKey(s);
     }
 
@@ -61,7 +61,7 @@ public class AnsweringTest {
 
     @Test
     public void getAnswering() {
-        List<Answering> list = answeringService.getAnswering(null,11);
+        List<Answering> list = answeringService.getAnswering("吴",19);
         for(Answering a : list) {
             logger.info(String.valueOf(a));
         }

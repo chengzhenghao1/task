@@ -41,12 +41,12 @@ public class SecondTest {
     @Test
     public void updateByPrimaryKey() {
         s.setName("星夜");
-        s.setStairId(4L);
+        s.setStairId(7L);
         s.setState(0);
         s.setCreateAt(2021L);
         s.setUpdateAt(2022L);
         s.setEditor("编辑人");
-        s.setId(2L);
+        s.setId(16L);
         secondService.updateByPrimaryKey(s);
     }
 
@@ -60,7 +60,7 @@ public class SecondTest {
 
     @Test
     public void getScond() {
-        List<Second> list = secondService.getSecond(null, 0);
+        List<Second> list = secondService.getSecond("明儿", 1);
         for (Second a : list) {
             logger.info(String.valueOf(a));
         }
